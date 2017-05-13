@@ -157,7 +157,12 @@ function _executeValueAssertion(array $assertionData)
             $validator($subject);
         }
     } catch (ValidationFailureException $exception) {
-        $failureException = new AssertionFailureException($assertionData['orFailBecause'].PHP_EOL.$exception->getMessage());
+        $failureReasonSummary = $assertionData[FAILURE_REASON_KEY];
+        $failureException = new AssertionFailureException(
+            $failureReasonSummary.PHP_EOL.
+            $exception->getMessage().
+            _failureFileAndLine($exception)
+        );
         $failureException->data = (property_exists($exception, 'data') ? $exception->data : null);
         throw $failureException;
     }
@@ -177,6 +182,27 @@ function _toTraversable($value)
     }
 
     return [$value];
+}
+
+/**
+ * internal function
+ *
+ * @param  ValidationFailureException $exception
+ * @return string  the top file and line in the trace stack of the given exception that is not within
+ * the Kanta project, as this should be the line in the actual test file containing the assertion that
+ * failed
+ */
+function _failureFileAndLine(ValidationFailureException $exception)
+{
+    $failureFileAndLine = '';
+    foreach ($exception->getTrace() as $stackLevel) {
+        if (array_key_exists('file', $stackLevel) && strpos($stackLevel['file'], '/kanta/') === false) {
+            $failureFileAndLine = PHP_EOL."Line {$stackLevel['line']} of {$stackLevel['file']}";
+            break;
+        }
+    }
+
+    return $failureFileAndLine;
 }
 
 /**
@@ -222,8 +248,14 @@ function _executeThrowingCallableAssertion(array $assertionData)
                 $validator($subject);
             }
         } catch (ValidationFailureException $exception) {
-            $failureException = new AssertionFailureException($assertionData['orFailBecause'].PHP_EOL.$exception->getMessage());
+            $failureReasonSummary = $assertionData[FAILURE_REASON_KEY];
+            $failureException = new AssertionFailureException(
+                $failureReasonSummary.PHP_EOL.
+                $exception->getMessage().
+                _failureFileAndLine($exception)
+            );
             $failureException->data = (property_exists($exception, 'data') ? $exception->data : null);
+
             throw $failureException;
         }
     }
