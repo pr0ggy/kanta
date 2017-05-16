@@ -1,5 +1,5 @@
 ## Kanta
-### An easy-to-use, exception-based functional assertion library for PHP 5.6 and later
+### An easy-to-use, exception-based assertion library for PHP 5.6 and later
 
 ## Installation
     composer require --dev pr0ggy/kanta
@@ -61,7 +61,7 @@ Assertions made about exceptions thrown by callables are described by the follow
 - **orFailBecause**: Defines a summary of the reason why the assertion would fail
 
 ## Validators
-As stated above, validators are merely callables passed in with the assertion data that will accept the subject of the assertion as an argument and either return successfully or throw an instance of `Kanta\Validation\ValidationFailureException`.  Kanta ships with a number of built-in validator generator functions  within the `Kanta\Validation` namespace that should cover a broad range of assertion needs:
+As stated above, validators are merely callables passed in with the assertion data that will accept the subject of the assertion as an argument and either return successfully or throw an instance of `Kanta\Validation\ValidationFailureException`.  Kanta ships with a number of built-in validator generator functions within the `Kanta\Validation` namespace that should cover a broad range of assertion needs:
 
 #### is($referenceValue)
 Fails if the subject of validation is not strictly equal (===) to the given reference value
