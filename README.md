@@ -5,7 +5,7 @@
     composer require --dev pr0ggy/kanta
 
 ## Assertion API
-Kanta has 1 aim: provide a succinct, readable assertion API that is as descriptive and readable as possible while being as lightweight as possible.  Kanta has a single assert method that takes a single argument: a dictionary describing an assertion.  If the assertion fails, an instance of `Kanta\Validation\AssertionFailureException` will be thrown with a message explaining why the assertion failed.  There are 2 main assertion types: assertions about a value/array/object, or assertions about an exception that is expected to be thrown from a given callable when called with a given set of arguments (or no arguments, as the case may be).
+Kanta has 1 aim: provide a succinct, readable assertion API that is as descriptive and readable as possible while being as lightweight as possible.  Kanta has a single `assert` function that takes a single argument: a dictionary describing an assertion.  If the assertion fails, an instance of `Kanta\Validation\AssertionFailureException` will be thrown with a message explaining why the assertion failed.  There are 2 main assertion types: assertions about a value/array/object, or assertions about an exception that is expected to be thrown from a given callable when called with a given set of arguments (or no arguments, as the case may be).
 
 ### Asserting on Values/Objects/Arrays
 ```php
@@ -94,4 +94,3 @@ Explicitly throws a `Kanta\Validation\AssertionFailureException` instance with t
 
 ## License
 **GPL-3**
-
