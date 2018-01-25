@@ -4,7 +4,7 @@
     "version": "0.1.1",
     "type": "library",
     "keywords": ["php", "unit", "testing", "assert", "assertion", "validation"],
-    "license": "GPL",
+    "license": "MIT",
     "require": {
         "php": ">=5.6.0",
         "sebastian/comparator": "^1.2"
