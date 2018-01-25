@@ -93,4 +93,4 @@ Explicitly throws a `Kanta\Validation\AssertionFailureException` instance with t
     ./vendor/bin/phpunit
 
 ## License
-**GPL-3**
+**MIT**
